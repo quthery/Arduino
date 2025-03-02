@@ -1,9 +1,18 @@
-//Тип подключения дисплея: 1 - по шине I2C, 2 - десятиконтактное. 
-#define _LCD_TYPE 1
-#include <LCD_1602_RUS_ALL.h>
-LCD_1602_RUS <LiquidCrystal_I2C> lcd(0x3F, 16, 2);      // Задаем адрес и размерность дисплея.  0x27 - Адрес может быть другой
 
-#include <Keypad.h>                                     // Библиотека для клавиатуры
+#define _LCD_TYPE 1
+
+#include <LCD_1602_RUS_ALL.h>
+#include <LiquidCrystal_I2C.h>
+
+#include <Key.h>
+#include <Keypad.h>
+
+
+
+//Тип подключения дисплея: 1 - по шине I2C, 2 - десятиконтактное. 
+
+LCD_1602_RUS <LiquidCrystal_I2C> lcd(0x27, 16, 2);      // Задаем адрес и размерность дисплея.  0x27 - Адрес может быть другой
+                                 // Библиотека для клавиатуры
 
 const byte ROWS = 4;                                    // 4 строки 
 const byte COLS = 4;                                    // 4 ряда
@@ -127,7 +136,7 @@ void DetectButtons(){
     if (key == '0'){
       Serial.println ("Кнопка 0");                     
       if (Number==0)
-      Number=0;
+      Number=9;
       else
       Number = (Number*10) + 0;                         
     }
